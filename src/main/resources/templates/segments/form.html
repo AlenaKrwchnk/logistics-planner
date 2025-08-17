@@ -1,0 +1,79 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Segment Form</title>
+</head>
+<body>
+<h2>Segment Form</h2>
+
+
+
+
+<form th:action="@{/ui/segments}" th:object="${segment}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>base Cost Per Km Usd:</label>
+    <input type="number" th:field="*{baseCostPerKmUsd}"/><br/>
+
+    <label>co2 Kg Per Km:</label>
+    <input type="number" th:field="*{co2KgPerKm}"/><br/>
+
+    <label>distance Km:</label>
+    <input type="number" th:field="*{distanceKm}"/><br/>
+
+    <label>speed Kmh:</label>
+    <input type="number"  th:field="*{speedKmh}"/><br/>
+
+    <label>vehicle Type:</label>
+    <select th:field="*{vehicleType}">
+        <option th:each="type : ${vehicleTypes}"
+                th:value="${type}"
+                th:text="${type}">Vehicle Type</option>
+    </select><br/>
+
+    <label>custom checkpoint:</label>
+    <select name="customcheckpoint" >
+        <!-- Пустой вариант -->
+        <option value="" th:text="'None '" th:selected="${segment.customs == null}"></option>
+
+        <option th:each="c : ${checkpoints}" th:value="${c.name}"
+                th:text="${c.name}" th:selected="${segment.customs != null and c.name == segment.customs.name}">
+        </option>
+    </select>
+
+    <label>destination:</label>
+    <select th:field="*{destination}"  >
+    <option th:each="s : ${locations}" th:value="${s.id}"
+            th:text="${s.code}" >
+    </option>
+    </select>
+
+
+
+
+
+
+
+
+    <label>origin:</label>
+
+    <select th:field="*{origin}">
+        <option th:each="m: ${locations}" th:value="${m.id}"
+                th:text="${m.code}" >
+        </option>
+    </select>
+
+
+
+
+    <input type="hidden" th:field="*{geoJson}" id="geoJson"/>
+
+
+    <button type="submit">💾 Save</button>
+    <a th:href="@{/ui/segments}">⬅ Back</a>
+</form>
+
+
+</body>
+</html>

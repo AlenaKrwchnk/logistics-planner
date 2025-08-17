@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: logistics-planner
+  datasource:
+    url: jdbc:mysql://localhost:3306/logistics?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: RootRoot123!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  thymeleaf:
+    cache: false
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+    com.example: debug

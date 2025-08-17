@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Segments</title>
+</head>
+<body>
+<h2>Segments</h2>
+
+<a th:href="@{/ui/segments/new}">➕ New Segment</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>base Cost Per Km Usd</th>
+        <th>co2 Kg Per Km</th>
+        <th>distance Km</th>
+        <th>speed Kmh</th>
+        <th>vehicle Type</th>
+        <th>custom checkpoint </th>
+        <th>destination </th>
+        <th>origin </th>
+        <th>geoJson </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${segments}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.baseCostPerKmUsd}"></td>
+        <td th:text="${s.co2KgPerKm}"></td>
+        <td th:text="${s.distanceKm}"></td>
+        <td th:text="${s.speedKmh}"></td>
+        <td th:text="${s.vehicleType}"></td>
+        <td th:text="${s.customs != null} ? ${s.customs.name} : ''"></td>
+        <td th:text="${s.destination.code}"></td>
+        <td th:text="${s.origin.code}"></td>
+        <td th:text="${s.geoJson}"></td>
+        <td>
+            <a th:href="@{/ui/segments/{id}/edit(id=${s.id})}">✏ Edit</a>
+            <a th:href="@{/ui/segments/{id}/delete(id=${s.id})}" onclick="return confirm('Delete?')">❌ Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">⬅ Back  </a>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Customs Checkpoint Form</title>
+</head>
+<body>
+<h2>Customs Checkpoint Form</h2>
+
+<form th:action="@{/ui/customs-checkpoints}" th:object="${checkpoint}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}"/><br/>
+
+    <label>Country:</label>
+    <input type="text" th:field="*{country}"/><br/>
+
+
+    <label>Location:</label>
+    <select th:field="*{location}">
+        <option th:each="l : ${locations}" th:value="${l.id}" th:text="${l.name}"></option>
+    </select><br/>
+
+    <button type="submit">💾 Save</button>
+    <a th:href="@{/ui/customs-checkpoints}">⬅ Back</a>
+</form>
+
+</body>
+</html>

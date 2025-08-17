@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Eco Fee Rule Form</title>
+</head>
+<body>
+<h2>Eco Fee Rule Form</h2>
+
+<form th:action="@{/ui/eco-fee-rules}" th:object="${rule}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Price per kg CO2 USD:</label>
+    <input type="number" th:field="*{pricePerKgCO2Usd}"/><br/>
+
+
+    <label>Vehicle type:</label>
+    <select th:field="*{vehicleType}">
+        <option th:each="type : ${vehicleTypes}"
+                th:value="${type}"
+                th:text="${type}">Vehicle Type</option>
+    </select><br/>
+
+    <button type="submit">💾 Save</button>
+    <a th:href="@{/ui/eco-fee-rules}">⬅ Back</a>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Locations</title>
+</head>
+<body>
+<h2>Locations</h2>
+
+<a th:href="@{/ui/locations/new}">➕ New Location</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Country</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="l : ${locations}">
+        <td th:text="${l.id}"></td>
+        <td th:text="${l.code}"></td>
+        <td th:text="${l.country}"></td>
+        <td th:text="${l.lat}"></td>
+        <td th:text="${l.lon}"></td>
+        <td th:text="${l.name}"></td>
+        <td>
+            <a th:href="@{/ui/locations/{id}/edit(id=${l.id})}">✏ Edit</a>
+            <a th:href="@{/ui/locations/{id}/delete(id=${l.id})}" onclick="return confirm('Delete?')">❌ Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">⬅ Back  </a>
+</body>
+</html>

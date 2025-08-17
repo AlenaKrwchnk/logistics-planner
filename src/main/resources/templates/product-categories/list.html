@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Product Categories</title>
+</head>
+<body>
+<h2>Product Categories</h2>
+
+<a th:href="@{/ui/product-categories/new}">➕ New Category</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${categories}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+        <td>
+            <a th:href="@{/ui/product-categories/{id}/edit(id=${c.id})}">✏ Edit</a>
+            <a th:href="@{/ui/product-categories/{id}/delete(id=${c.id})}" onclick="return confirm('Delete?')">❌ Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">⬅ Back  </a>
+</body>
+</html>

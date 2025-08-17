@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Eco Fee Rules</title>
+</head>
+<body>
+<h2>Eco Fee Rules</h2>
+
+<a th:href="@{/ui/eco-fee-rules/new}">➕ New Eco Fee Rule</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Price per kg CO2 USD</th>
+        <th>Vehicle type</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${rules}">
+        <td th:text="${e.id}"></td>
+        <td th:text="${e.pricePerKgCO2Usd}"></td>
+        <td th:text="${e.vehicleType}"></td>
+
+        <td>
+            <a th:href="@{/ui/eco-fee-rules/{id}/edit(id=${e.id})}">✏ Edit</a>
+            <a th:href="@{/ui/eco-fee-rules/{id}/delete(id=${e.id})}" onclick="return confirm('Delete?')">❌ Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">⬅ Back  </a>
+</body>
+</html>

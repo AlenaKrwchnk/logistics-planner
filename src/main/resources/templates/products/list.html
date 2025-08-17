@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h2>Products</h2>
+
+<a href="/ui/products/new">➕ Add Product</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${products}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.category != null ? p.category.name : '—'}"></td>
+        <td>
+            <a th:href="@{'/ui/products/' + ${p.id} + '/edit'}">✏ Edit</a> |
+            <a th:href="@{'/ui/products/' + ${p.id} + '/delete'}"
+               onclick="return confirm('Delete this product?')">❌ Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">⬅ Back  </a>
+</body>
+</html>
